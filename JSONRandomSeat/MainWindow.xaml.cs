@@ -54,9 +54,9 @@ namespace JSONRandomSeat
             {
 
                 var lines = File.ReadAllLines(txtFile.Text);
-                List<int> seatNumbers = new List<int>();
-                Random random = new Random();
-                int row = 0;
+                //List<int> seatNumbers = new List<int>();
+                //Random random = new Random();
+                //int row = 0;
 
                 for (int i =0; i<lines.Length; i++)
                 {
@@ -66,12 +66,27 @@ namespace JSONRandomSeat
                     var column = line.Split(',');
                     string name = column[0];
 
-                    //add in random number to assign seats, rows, and computer to various students
+                    
+                }
+                
+            }
+            
+            if (File.Exists(txtFile.Text) == true)
+            {
+
+                var lines = File.ReadAllLines(txtFile.Text);
+                 for (int i =0; i<lines.Length; i++)
+                {
+                    int number;
+
+                    var line = lines[i];
+                    var column = line.Split(',');
+                    string name = column[0];
+
+                    
                 }
                 
             }
         }
-
-        
     }
 }
