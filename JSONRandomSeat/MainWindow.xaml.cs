@@ -65,26 +65,23 @@ namespace JSONRandomSeat
                     var line = lines[i];
                     var column = line.Split(',');
                     string name = column[0];
-
-                    
                 }
                 
             }
             
-            if (File.Exists(txtFile.Text) == true)
+            if (File.Exists(txtFile2.Text) == true)
             {
 
-                var lines = File.ReadAllLines(txtFile.Text);
+                var lines = File.ReadAllLines(txtFile2.Text);
                  for (int i =0; i<lines.Length; i++)
-                {
+                 {
                     int number;
 
                     var line = lines[i];
                     var column = line.Split(',');
                     string name = column[0];
 
-                    
-                }
+                 }
                 
             }
         }
