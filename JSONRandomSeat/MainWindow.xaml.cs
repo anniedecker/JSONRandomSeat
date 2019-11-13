@@ -30,11 +30,22 @@ namespace JSONRandomSeat
         private void btnRollSheet_Click(object sender, RoutedEventArgs e)
         {
             //read in *only* JSON files
+            //students
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.Filter = "JSON files (*.json) | *.json";
             var result = dlg.ShowDialog();
             txtFile.Text = dlg.FileName;
 
+        }
+
+        private void BtnWorkstation_Click(object sender, RoutedEventArgs e)
+        {
+            //read in *only* JSON files
+            //workstations
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.Filter = "JSON files (*.json) | *.json";
+            var result = dlg.ShowDialog();
+            txtFile2.Text = dlg.FileName;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -60,5 +71,7 @@ namespace JSONRandomSeat
                 
             }
         }
+
+        
     }
 }
