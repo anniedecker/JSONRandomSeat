@@ -136,20 +136,28 @@ namespace JSONRandomSeat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            btnPopulate_Click(sender, e);
+            if  (comboStudentSit1.Text == String.Empty && comboStudentSit2.Text == String.Empty)
+                {
+                 
+                }
+            else if (comboStudentSit1.Text != String.Empty && comboStudentSit2.Text != String.Empty)
+            {
+
+            }
             var random1 = new Random();
-            var result1 = StudentNames.OrderBy(item => random1.Next());
-            var random2 = new Random();
-            var result2 = Workstations.OrderBy(item => random2.Next());
-            MessageBox.Show($"{result1} + {result2}");
-            //var count = StudentNames.Count;
-            //var last = count - 1;
-            //for (var i = 0; i <last; ++i)
-            //{
-            //    var r = UnityEngine.Random.Range(i, count);
-            //    var tmp = StudentNames[i];
-            //    StudentNames[i] = StudentNames[r];
-            //    StudentNames[r] = tmp;
-            //}
+            var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+            for (int i = 0; i < Workstations.Count; i++)
+            {
+                    lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+            }
+
+            string StudentSit1 = comboStudentSit1.Text;
+            string StudentSit2 = comboStudentSit2.Text;
+            if (comboStudentSit1.Text != String.Empty && comboStudentSit2.Text != String.Empty)
+            {
+
+            }
         }
     }
 }
