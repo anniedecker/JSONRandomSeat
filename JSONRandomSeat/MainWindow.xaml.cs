@@ -137,10 +137,13 @@ namespace JSONRandomSeat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             btnPopulate_Click(sender, e);
+            //FOR IF Q1 IS EMPTY
             if  (comboStudentSit1.Text == String.Empty && comboStudentSit2.Text == String.Empty)
             {
-                 if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
+                //FOR IF Q2 IS EMPTY
+                if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
                 {
+                    //FOR IF Q3 IS EMPTY
                     if (comboBrokenSeat.Text == String.Empty)
                     {
                         var random1 = new Random();
@@ -150,6 +153,7 @@ namespace JSONRandomSeat
                             lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
                         }
                     }
+                    //FOR IF Q3 IS NOT EMPTY
                     else
                     {
                         var random1 = new Random();
@@ -160,8 +164,10 @@ namespace JSONRandomSeat
                         }
                     }
                 }
-                else if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
+                 // FOR IF Q2 IS NOT EMPTY
+                else if (comboStudentRequired.Text != String.Empty && comboSeatRequired.Text != String.Empty)
                 {
+                    //FOR IF Q3 IS EMPTY
                     if (comboBrokenSeat.Text == String.Empty)
                     {
                         var random1 = new Random();
@@ -171,6 +177,7 @@ namespace JSONRandomSeat
                             lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
                         }
                     }
+                    //FOR IF Q3 IS NOT EMPTY
                     else
                     {
                         var random1 = new Random();
@@ -181,15 +188,19 @@ namespace JSONRandomSeat
                         }
                     }
                 }
+                //FOR ONLY HALF OF Q2 IS FILLED
                  else
                 {
                     lstSeatArrangement.Items.Add("Both of the combo boxes for the student name and required workstation must be blank or filled.");
                 }
             }
+            //FOR IF Q1 IS FILLED
             else if (comboStudentSit1.Text != String.Empty && comboStudentSit2.Text != String.Empty)
             {
+                //FOR IF Q2 IS EMPTY
                 if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
                 {
+                    //FOR IF Q3 IS EMPTY
                     if (comboBrokenSeat.Text == String.Empty)
                     {
                         var random1 = new Random();
@@ -199,6 +210,7 @@ namespace JSONRandomSeat
                             lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
                         }
                     }
+                    //FOR IF Q3 IS FILLED
                     else
                     {
                         var random1 = new Random();
@@ -209,8 +221,10 @@ namespace JSONRandomSeat
                         }
                     }
                 }
-                else if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
+                //FOR IF Q2 IS FILLED 
+                else if (comboStudentRequired.Text != String.Empty && comboSeatRequired.Text != String.Empty)
                 {
+                    //FOR IF Q3 IS EMPTY
                     if (comboBrokenSeat.Text == String.Empty)
                     {
                         var random1 = new Random();
@@ -220,6 +234,7 @@ namespace JSONRandomSeat
                             lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
                         }
                     }
+                    //FOR IF Q3 IS FILLED
                     else
                     {
                         var random1 = new Random();
@@ -230,9 +245,10 @@ namespace JSONRandomSeat
                         }
                     }
                 }
+                //FOR IF HALF OF Q1 IS FILLED
                 else
                 {
-                    lstSeatArrangement.Items.Add("Both of the combo boxes for the student name and required workstation must be blank or filled.");
+                    lstSeatArrangement.Items.Add("Both of the combo boxes for the student names that cannot sit next to each other should be blank or filled");
                 }
             }
 
