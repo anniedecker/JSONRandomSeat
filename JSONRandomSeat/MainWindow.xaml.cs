@@ -138,12 +138,34 @@ namespace JSONRandomSeat
         {
             btnPopulate_Click(sender, e);
             if  (comboStudentSit1.Text == String.Empty && comboStudentSit2.Text == String.Empty)
+            {
+                 if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
                 {
-                 
+
                 }
+                else if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
+                {
+
+                }
+                 else
+                {
+                    lstSeatArrangement.Items.Add("Both of the combo boxes for the student name and required workstation must be blank or filled.");
+                }
+            }
             else if (comboStudentSit1.Text != String.Empty && comboStudentSit2.Text != String.Empty)
             {
+                if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
+                {
 
+                }
+                else if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
+                {
+
+                }
+                else
+                {
+                    lstSeatArrangement.Items.Add("Both of the combo boxes for the student name and required workstation must be blank or filled.");
+                }
             }
             var random1 = new Random();
             var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
@@ -154,10 +176,6 @@ namespace JSONRandomSeat
 
             string StudentSit1 = comboStudentSit1.Text;
             string StudentSit2 = comboStudentSit2.Text;
-            if (comboStudentSit1.Text != String.Empty && comboStudentSit2.Text != String.Empty)
-            {
-
-            }
         }
     }
 }
