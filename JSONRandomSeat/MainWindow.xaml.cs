@@ -141,11 +141,45 @@ namespace JSONRandomSeat
             {
                  if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
                 {
-
+                    if (comboBrokenSeat.Text == String.Empty)
+                    {
+                        var random1 = new Random();
+                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        for (int i = 0; i < Workstations.Count; i++)
+                        {
+                            lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                        }
+                    }
+                    else
+                    {
+                        var random1 = new Random();
+                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        for (int i = 0; i < Workstations.Count; i++)
+                        {
+                            lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                        }
+                    }
                 }
                 else if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
                 {
-
+                    if (comboBrokenSeat.Text == String.Empty)
+                    {
+                        var random1 = new Random();
+                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        for (int i = 0; i < Workstations.Count; i++)
+                        {
+                            lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                        }
+                    }
+                    else
+                    {
+                        var random1 = new Random();
+                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        for (int i = 0; i < Workstations.Count; i++)
+                        {
+                            lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                        }
+                    }
                 }
                  else
                 {
@@ -156,23 +190,52 @@ namespace JSONRandomSeat
             {
                 if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
                 {
-
+                    if (comboBrokenSeat.Text == String.Empty)
+                    {
+                        var random1 = new Random();
+                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        for (int i = 0; i < Workstations.Count; i++)
+                        {
+                            lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                        }
+                    }
+                    else
+                    {
+                        var random1 = new Random();
+                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        for (int i = 0; i < Workstations.Count; i++)
+                        {
+                            lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                        }
+                    }
                 }
                 else if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
                 {
-
+                    if (comboBrokenSeat.Text == String.Empty)
+                    {
+                        var random1 = new Random();
+                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        for (int i = 0; i < Workstations.Count; i++)
+                        {
+                            lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                        }
+                    }
+                    else
+                    {
+                        var random1 = new Random();
+                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        for (int i = 0; i < Workstations.Count; i++)
+                        {
+                            lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                        }
+                    }
                 }
                 else
                 {
                     lstSeatArrangement.Items.Add("Both of the combo boxes for the student name and required workstation must be blank or filled.");
                 }
             }
-            var random1 = new Random();
-            var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-            for (int i = 0; i < Workstations.Count; i++)
-            {
-                    lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
-            }
+
 
             string StudentSit1 = comboStudentSit1.Text;
             string StudentSit2 = comboStudentSit2.Text;
