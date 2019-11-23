@@ -148,9 +148,9 @@ namespace JSONRandomSeat
                     {
                         var random1 = new Random();
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        for (int i = 0; i < Workstations.Count; i++)
+                        for (int i = 0; i < result1.Count; i++)
                         {
-                            lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                            lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
                         }
                     }
                     //FOR IF Q3 IS NOT EMPTY
@@ -160,7 +160,15 @@ namespace JSONRandomSeat
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
                         for (int i = 0; i < Workstations.Count; i++)
                         {
-                            lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                            if (i != comboBrokenSeat.SelectedIndex)
+                            {
+                                lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                            }
+                            else
+                            {
+                                lstSeatArrangement.Items.Add($"{comboBrokenSeat.SelectedIndex} is broken.");
+                            }
+                            
                         }
                     }
                 }
@@ -172,9 +180,9 @@ namespace JSONRandomSeat
                     {
                         var random1 = new Random();
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        for (int i = 0; i < Workstations.Count; i++)
+                        for (int i = 0; i < result1.Count; i++)
                         {
-                            lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                            lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
                         }
                     }
                     //FOR IF Q3 IS NOT EMPTY
@@ -205,9 +213,9 @@ namespace JSONRandomSeat
                     {
                         var random1 = new Random();
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        for (int i = 0; i < Workstations.Count; i++)
+                        for (int i = 0; i < result1.Count; i++)
                         {
-                            lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                            lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
                         }
                     }
                     //FOR IF Q3 IS FILLED
@@ -226,16 +234,17 @@ namespace JSONRandomSeat
                 {
                     //FOR IF Q3 IS EMPTY
                     if (comboBrokenSeat.Text == String.Empty)
-                    {
-                        var random1 = new Random();
-                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        for (int i = 0; i < Workstations.Count; i++)
+                        if (comboBrokenSeat.Text == String.Empty)
                         {
-                            lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                            var random1 = new Random();
+                            var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            for (int i = 0; i < result1.Count; i++)
+                            {
+                                lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
+                            }
                         }
-                    }
-                    //FOR IF Q3 IS FILLED
-                    else
+                        //FOR IF Q3 IS FILLED
+                        else
                     {
                         var random1 = new Random();
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
