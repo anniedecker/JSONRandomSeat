@@ -158,6 +158,7 @@ namespace JSONRandomSeat
                     {
                         var random1 = new Random();
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+
                         for (int i = 0; i < result1.Count; i++)
                         {
                             if (i != comboBrokenSeat.SelectedIndex)
@@ -166,7 +167,7 @@ namespace JSONRandomSeat
                             }
                             else
                             {
-                                Workstations.RemoveAt(comboBrokenSeat.SelectedIndex);
+                                Workstations.RemoveRange(comboBrokenSeat.SelectedIndex, 1);
                             }
                             
                         }
