@@ -158,15 +158,15 @@ namespace JSONRandomSeat
                     {
                         var random1 = new Random();
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        for (int i = 0; i < Workstations.Count; i++)
+                        for (int i = 0; i < result1.Count; i++)
                         {
                             if (i != comboBrokenSeat.SelectedIndex)
                             {
-                                lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
+                                lstSeatArrangement.Items.Add(result1[i] + Workstations[i]);
                             }
                             else
                             {
-                                lstSeatArrangement.Items.Add($"{comboBrokenSeat.SelectedIndex} is broken.");
+                                Workstations.RemoveAt(comboBrokenSeat.SelectedIndex);
                             }
                             
                         }
@@ -175,6 +175,7 @@ namespace JSONRandomSeat
                  // FOR IF Q2 IS NOT EMPTY
                 else if (comboStudentRequired.Text != String.Empty && comboSeatRequired.Text != String.Empty)
                 {
+                    //comboSeatRequired.SelectedIndex == comboStudentRequired.SelectedIndex;
                     //FOR IF Q3 IS EMPTY
                     if (comboBrokenSeat.Text == String.Empty)
                     {
