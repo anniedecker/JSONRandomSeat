@@ -169,7 +169,7 @@ namespace JSONRandomSeat
                     {
                         var random1 = new Random();
                         var result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
-                        for (int i = 0; i < Workstations.Count; i++)
+                        for (int i = 0; i < result1.Count; i++)
                         {
                             lstSeatArrangement.Items.Add($"{result1[i]} - {ExcludeWorkstations[i]}");
                         }
@@ -203,7 +203,7 @@ namespace JSONRandomSeat
                     {
                         var random1 = new Random();
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        for (int i = 0; i < Workstations.Count; i++)
+                        for (int i = 0; i < result1.Count; i++)
                         {
                             lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
                         }
@@ -228,7 +228,7 @@ namespace JSONRandomSeat
                         {
                             var random1 = new Random();
                             var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                            for (int i = 0; i < Workstations.Count; i++)
+                            for (int i = 0; i < result1.Count; i++)
                             {
                                 lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
                             }
@@ -335,7 +335,7 @@ namespace JSONRandomSeat
                     {
                         var random1 = new Random();
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        for (int i = 0; i < Workstations.Count; i++)
+                        for (int i = 0; i < result1.Count; i++)
                         {
                             lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
                         }
@@ -360,7 +360,7 @@ namespace JSONRandomSeat
                         {
                             var random1 = new Random();
                             var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                            for (int i = 0; i < Workstations.Count; i++)
+                            for (int i = 0; i < result1.Count; i++)
                             {
                                 lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
                             }
