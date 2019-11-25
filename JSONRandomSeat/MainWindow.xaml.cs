@@ -130,6 +130,10 @@ namespace JSONRandomSeat
                             }
 
                         }
+                        if (comboSeatRequired.Text != String.Empty)
+                        {
+                            ExcludeWorkstations.Remove(comboBrokenSeat.Text);
+                        }
                         int a = 0;
                         for (int i = 0; i < result1.Count; i++)
                         {
@@ -180,7 +184,12 @@ namespace JSONRandomSeat
                         var random1 = new Random();
                         var result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
                         int a = 0;
+                        if (comboSeatRequired.Text != String.Empty)
+                        {
+                            ExcludeWorkstations.Remove(comboBrokenSeat.Text);
+                        }
                         for (int i = 0; i < result1.Count; i++)
+
                         {
                             a = a + 2;
                             lstSeatArrangement.Items.Add($"{result1[i]} - {ExcludeWorkstations[a]}");
@@ -227,7 +236,11 @@ namespace JSONRandomSeat
                                 ExcludeWorkstations.Add(station);
                             }
                         }
-                            var random1 = new Random();
+                        if (comboSeatRequired.Text != String.Empty)
+                        {
+                            ExcludeWorkstations.Remove(comboBrokenSeat.Text);
+                        }
+                        var random1 = new Random();
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
                         if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
                         {
@@ -376,6 +389,10 @@ namespace JSONRandomSeat
                     else
                     {
                         var random1 = new Random();
+                            if (comboSeatRequired.Text != String.Empty)
+                            {
+                                ExcludeWorkstations.Remove(comboBrokenSeat.Text);
+                            }
                         var result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
                         for (int i = 0; i < result1.Count; i++)
                         {
@@ -431,15 +448,20 @@ namespace JSONRandomSeat
                                 ExcludeWorkstations.Add(station);
                             }
                         }
+                        if (comboSeatRequired.Text != String.Empty)
+                        {
+                            ExcludeWorkstations.Remove(comboBrokenSeat.Text);
+                        }
                         var random1 = new Random();
                         var result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
                         if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
                         {
-                            result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
+                            result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
                         }
+
                         for (int i = 0; i < result1.Count; i++)
                         {
-                            lstSeatArrangement.Items.Add(result1[i] + ExcludeWorkstations[i]);
+                            lstSeatArrangement.Items.Add($"{result1[i]} - {ExcludeWorkstations[i]}");
                         }
                     }
                 }
@@ -449,21 +471,15 @@ namespace JSONRandomSeat
                     //FOR IF Q3 IS EMPTY
                     if (comboBrokenSeat.Text == String.Empty)
                     {
-                        var random1 = new Random();
-                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
+                        List<string> ExcludeStudentNames = new List<string>();
+                        foreach (var student in StudentNames)
                         {
-                            result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            if (student != comboStudentRequired.Text)
+                            {
+                                ExcludeStudentNames.Add(student);
+                            }
+
                         }
-                        for (int i = 0; i < result1.Count; i++)
-                        {
-                            lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
-                        }
-                        lstSeatArrangement.Items.Add($"{comboStudentRequired.Text} - {comboSeatRequired.Text}");
-                    }
-                    //IF Q3 IS FILLED
-                    else
-                    {
                         List<string> ExcludeWorkstations = new List<string>();
                         foreach (var station in Workstations)
                         {
@@ -476,7 +492,40 @@ namespace JSONRandomSeat
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
                         if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
                         {
-                            result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
+                        }
+                        for (int i = 0; i < result1.Count; i++)
+                        {
+                            lstSeatArrangement.Items.Add($"{result1[i]} - {ExcludeWorkstations[i]}");
+                        }
+                        lstSeatArrangement.Items.Add($"{comboStudentRequired.Text} - {comboSeatRequired.Text}");
+                    }
+                    //IF Q3 IS FILLED
+                    else
+                    {
+                        List<string> ExcludeStudentNames = new List<string>();
+                        foreach (var student in StudentNames)
+                        {
+                            if (student != comboStudentRequired.Text)
+                            {
+                                ExcludeStudentNames.Add(student);
+                            }
+
+                        }
+                        List<string> ExcludeWorkstations = new List<string>();
+                        foreach (var station in Workstations)
+                        {
+                            if (station != comboSeatRequired.Text)
+                            {
+                                ExcludeWorkstations.Add(station);
+                            }
+                        }
+
+                        var random1 = new Random();
+                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
+                        {
+                            result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
                         }
                         for (int i = 0; i < result1.Count; i++)
                         {
