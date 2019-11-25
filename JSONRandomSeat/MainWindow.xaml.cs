@@ -193,7 +193,12 @@ namespace JSONRandomSeat
                     {
                         var random1 = new Random();
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        for (int i = 0; i < result1.Count; i++)
+                        if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
+                        {
+                            result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        }
+
+                            for (int i = 0; i < result1.Count; i++)
                         {
                             lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
                         }
@@ -203,6 +208,10 @@ namespace JSONRandomSeat
                     {
                         var random1 = new Random();
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
+                        {
+                            result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        }
                         for (int i = 0; i < result1.Count; i++)
                         {
                             lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
@@ -218,6 +227,10 @@ namespace JSONRandomSeat
                         {
                             var random1 = new Random();
                             var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
+                            {
+                                result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            }
                             for (int i = 0; i < result1.Count; i++)
                             {
                                 lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
@@ -228,6 +241,10 @@ namespace JSONRandomSeat
                         {
                             var random1 = new Random();
                             var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
+                            {
+                                result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            }
                             for (int i = 0; i < result1.Count; i++)
                             {
                                 lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
@@ -326,6 +343,11 @@ namespace JSONRandomSeat
                     {
                         var random1 = new Random();
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        if (comboStudentSit1.SelectedIndex != (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex != (comboStudentSit2.SelectedIndex - 1))
+                        {
+                            result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        }
+                        
                         for (int i = 0; i < result1.Count; i++)
                         {
                             lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
@@ -336,6 +358,10 @@ namespace JSONRandomSeat
                     {
                         var random1 = new Random();
                         var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
+                        {
+                            result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        }
                         for (int i = 0; i < result1.Count; i++)
                         {
                             lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
@@ -351,6 +377,10 @@ namespace JSONRandomSeat
                         {
                             var random1 = new Random();
                             var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
+                            {
+                                result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            }
                             for (int i = 0; i < result1.Count; i++)
                             {
                                 lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
@@ -361,6 +391,10 @@ namespace JSONRandomSeat
                         {
                             var random1 = new Random();
                             var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
+                            {
+                                result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            }
                             for (int i = 0; i < result1.Count; i++)
                             {
                                 lstSeatArrangement.Items.Add(StudentNames[i] + Workstations[i]);
