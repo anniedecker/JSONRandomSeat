@@ -12,20 +12,20 @@
             <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
         <Button x:Name="btnStudentRoster" Content="Select Student Roster" HorizontalAlignment="Left" Margin="144,38,0,0" VerticalAlignment="Top" Width="112" Height="24" Click="btnRollSheet_Click" FontSize="10"/>
-        <TextBox x:Name="txtFile" HorizontalAlignment="Left" Height="27" Margin="18,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118" TextChanged="txtFile_TextChanged"/>
+        <TextBox x:Name="txtFile" HorizontalAlignment="Left" Height="27" Margin="18,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118" TextChanged="txtFile_TextChanged" FontSize="9"/>
         <Button x:Name="btnAssignConsecutive" Content="Consecutive Seats" HorizontalAlignment="Left" Margin="16,277,0,0" VerticalAlignment="Top" Width="129" Height="28" Click="btnAssignConsecutive_Click" FontSize="10"/>
         <Label Content="Random Seat Assigner" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="237"/>
-        <TextBox x:Name="txtFile2" HorizontalAlignment="Left" Height="26" Margin="18,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
+        <TextBox x:Name="txtFile2" HorizontalAlignment="Left" Height="26" Margin="18,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118" FontSize="9"/>
         <Button x:Name="btnWorkstation" Content="Select Workstation List" HorizontalAlignment="Left" Height="26" Margin="144,70,0,0" VerticalAlignment="Top" Width="112" Click="BtnWorkstation_Click" FontSize="10"/>
         <TextBlock x:Name="Q1" HorizontalAlignment="Left" Margin="15,133,0,0" TextWrapping="Wrap" Text="1. Select the two students that should not sit next to each other." VerticalAlignment="Top" Width="264" Height="24" FontSize="10"/>
         <TextBlock x:Name="Q2" HorizontalAlignment="Left" Margin="16,186,0,0" TextWrapping="Wrap" Text="2. Select the student name and required workstation." VerticalAlignment="Top" Width="264" Height="22" FontSize="10"/>
         <TextBlock x:Name="Q3" HorizontalAlignment="Left" Margin="16,226,0,0" TextWrapping="Wrap" Text="3. Select the workstation that cannot be used (if any)." VerticalAlignment="Top" Width="264" Height="23" FontSize="10"/>
         <Button x:Name="btnSkipSeats" Content="Skip Seats" HorizontalAlignment="Left" Margin="156,277,0,0" VerticalAlignment="Top" Width="124" Height="28" Click="btnSkipSeats_Click" FontSize="10"/>
-        <ComboBox x:Name="comboStudentSit1" HorizontalAlignment="Left" Margin="17,163,0,0" VerticalAlignment="Top" Width="119" Height="16"/>
-        <ComboBox x:Name="comboStudentSit2" HorizontalAlignment="Left" Margin="157,163,0,0" VerticalAlignment="Top" Width="118" Height="16"/>
-        <ComboBox x:Name="comboStudentRequired" HorizontalAlignment="Left" Margin="18,204,0,0" VerticalAlignment="Top" Width="119" Height="16"/>
-        <ComboBox x:Name="comboSeatRequired" HorizontalAlignment="Left" Margin="158,204,0,0" VerticalAlignment="Top" Width="118" Height="16"/>
-        <ComboBox x:Name="comboBrokenSeat" HorizontalAlignment="Left" Margin="18,247,0,0" VerticalAlignment="Top" Width="258" Height="15"/>
+        <ComboBox x:Name="comboStudentSit1" HorizontalAlignment="Left" Margin="17,163,0,0" VerticalAlignment="Top" Width="119" Height="16" FontSize="9"/>
+        <ComboBox x:Name="comboStudentSit2" HorizontalAlignment="Left" Margin="157,163,0,0" VerticalAlignment="Top" Width="118" Height="16" FontSize="9"/>
+        <ComboBox x:Name="comboStudentRequired" HorizontalAlignment="Left" Margin="18,204,0,0" VerticalAlignment="Top" Width="119" Height="16" FontSize="9"/>
+        <ComboBox x:Name="comboSeatRequired" HorizontalAlignment="Left" Margin="158,204,0,0" VerticalAlignment="Top" Width="118" Height="16" FontSize="9"/>
+        <ComboBox x:Name="comboBrokenSeat" HorizontalAlignment="Left" Margin="18,247,0,0" VerticalAlignment="Top" Width="258" Height="15" FontSize="9"/>
         <Button x:Name="btnPopulate" Content="Populate Combo Boxes" HorizontalAlignment="Left" Margin="54,103,0,0" VerticalAlignment="Top" Width="159" Height="25" Click="btnPopulate_Click" FontSize="10"/>
         <ListBox x:Name="lstSeatArrangement" HorizontalAlignment="Left" Height="306" Margin="285,8,0,0" VerticalAlignment="Top" Width="222"/>
 
