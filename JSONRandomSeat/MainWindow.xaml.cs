@@ -47,7 +47,7 @@ namespace JSONRandomSeat
             var result = dlg.ShowDialog();
             txtFile2.Text = dlg.FileName;
         }
-         
+
 
         private void txtFile_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -60,7 +60,7 @@ namespace JSONRandomSeat
             {
 
                 var lines = File.ReadAllLines(txtFile.Text);
-                
+
                 for (int i = 0; i < lines.Length; i++)
                 {
                     //int number;
@@ -76,11 +76,11 @@ namespace JSONRandomSeat
             }
             if (File.Exists(txtFile2.Text) == true)
             {
-                
+
                 var lines = File.ReadAllLines(txtFile2.Text);
                 for (int i = 0; i < lines.Length; i++)
                 {
-                   // int number;
+                    // int number;
                     var line = lines[i];
                     var column = line.Split(',');
                     string seat = column[0];
@@ -115,7 +115,7 @@ namespace JSONRandomSeat
                             lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[a]}");
                         }
                     }
-                   
+
                     //IF Q3 IS NOT EMPTY
                     else
                     {
@@ -258,26 +258,34 @@ namespace JSONRandomSeat
                 else if (comboStudentRequired.Text != String.Empty && comboSeatRequired.Text != String.Empty)
                 {
                     //FOR IF Q3 IS EMPTY
-                        if (comboBrokenSeat.Text == String.Empty)
+                    if (comboBrokenSeat.Text == String.Empty)
+                    {
+                        var random1 = new Random();
+                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
                         {
-                            var random1 = new Random();
-                            var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                            if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
-                            {
-                                result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                            }
+                            result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        }
                         int a = 0;
-                            for (int i = 0; i < result1.Count; i++)
-                            {
+                        for (int i = 0; i < result1.Count; i++)
+                        {
                             a = a + 2;
-                                lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[a]}");
-                            }
+                            lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[a]}");
+                        }
                         lstSeatArrangement.Items.Add($"{comboStudentRequired.Text} - {comboSeatRequired.Text}");
                     }
 
-                        //IF Q3 IS FILLED
-                        else
+                    //IF Q3 IS FILLED
+                    else
+                    {
+                        List<string> ExcludeStudentNames = new List<string>();
+                        foreach (var student in StudentNames)
                         {
+                            if (student != comboStudentRequired.Text)
+                            {
+                                ExcludeStudentNames.Add(student);
+                            }
+
                             List<string> ExcludeWorkstations = new List<string>();
                             foreach (var station in Workstations)
                             {
@@ -292,51 +300,79 @@ namespace JSONRandomSeat
                             {
                                 result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
                             }
-                        int a = 0;
+                            int a = 0;
                             for (int i = 0; i < result1.Count; i++)
                             {
-                            a = a + 2;
+                                a = a + 2;
                                 lstSeatArrangement.Items.Add($"{result1[i]} + {ExcludeWorkstations[a]}");
                             }
                         }
-                    lstSeatArrangement.Items.Add($"{comboStudentRequired.Text} - {comboSeatRequired.Text}");
+                        lstSeatArrangement.Items.Add($"{comboStudentRequired.Text} - {comboSeatRequired.Text}");
 
+                    }
                 }
                 //IF HALF OF Q1 IS FILLED
                 else
                 {
                     lstSeatArrangement.Items.Add("Both of the combo boxes for the student names that cannot sit next to each other should be blank or filled");
                 }
+                }
+
             }
 
-        }
-
-        private void btnAssignConsecutive_Click(object sender, RoutedEventArgs e)
-        {
-            lstSeatArrangement.Items.Clear();
-            btnPopulate_Click(sender, e);
-            //IF Q1 IS EMPTY
-            if (comboStudentSit1.Text == String.Empty && comboStudentSit2.Text == String.Empty)
+            private void btnAssignConsecutive_Click(object sender, RoutedEventArgs e)
             {
-                //IF Q2 IS EMPTY
-                if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
+                lstSeatArrangement.Items.Clear();
+                // btnPopulate_Click(sender, e);
+                //IF Q1 IS EMPTY
+                if (comboStudentSit1.Text == String.Empty && comboStudentSit2.Text == String.Empty)
                 {
-                    //IF Q3 IS EMPTY
-                    if (comboBrokenSeat.Text == String.Empty)
+                    //IF Q2 IS EMPTY
+                    if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
                     {
-                        var random1 = new Random();
-                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        for (int i = 0; i < result1.Count; i++)
+                        //IF Q3 IS EMPTY
+                        if (comboBrokenSeat.Text == String.Empty)
                         {
-                            lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
+                            var random1 = new Random();
+                            var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            for (int i = 0; i < result1.Count; i++)
+                            {
+                                lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
+                            }
+                        }
+
+                        //IF Q3 IS NOT EMPTY
+                        else
+                        {
+                            var random1 = new Random();
+                            var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            List<string> ExcludeWorkstations = new List<string>();
+                            foreach (var station in Workstations)
+                            {
+                                if (station != comboSeatRequired.Text)
+                                {
+                                    ExcludeWorkstations.Add(station);
+                                }
+
+                            }
+                            for (int i = 0; i < result1.Count; i++)
+                            {
+                                lstSeatArrangement.Items.Add($"{result1[i]} - {ExcludeWorkstations[i]}");
+                            }
                         }
                     }
-
-                    //IF Q3 IS NOT EMPTY
-                    else
+                    //IF Q2 IS NOT EMPTY
+                    else if (comboStudentRequired.Text != String.Empty && comboSeatRequired.Text != String.Empty)
                     {
-                        var random1 = new Random();
-                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                        List<string> ExcludeStudentNames = new List<string>();
+                        foreach (var student in StudentNames)
+                        {
+                            if (student != comboStudentRequired.Text)
+                            {
+                                ExcludeStudentNames.Add(student);
+                            }
+
+                        }
                         List<string> ExcludeWorkstations = new List<string>();
                         foreach (var station in Workstations)
                         {
@@ -346,200 +382,174 @@ namespace JSONRandomSeat
                             }
 
                         }
-                        for (int i = 0; i < result1.Count; i++)
+                        //comboSeatRequired.SelectedIndex == comboStudentRequired.SelectedIndex;
+                        //IF Q3 IS EMPTY
+                        if (comboBrokenSeat.Text == String.Empty)
                         {
-                            lstSeatArrangement.Items.Add($"{result1[i]} - {ExcludeWorkstations[i]}");
-                        }
-                    }
-                }
-                //IF Q2 IS NOT EMPTY
-                else if (comboStudentRequired.Text != String.Empty && comboSeatRequired.Text != String.Empty)
-                {
-                    List<string> ExcludeStudentNames = new List<string>();
-                    foreach (var student in StudentNames)
-                    {
-                        if (student != comboStudentRequired.Text)
-                        {
-                            ExcludeStudentNames.Add(student);
-                        }
+                            var random1 = new Random();
+                            var result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
 
-                    }
-                    List<string> ExcludeWorkstations = new List<string>();
-                    foreach (var station in Workstations)
-                    {
-                        if (station != comboSeatRequired.Text)
-                        {
-                            ExcludeWorkstations.Add(station);
+                            for (int i = 0; i < result1.Count; i++)
+                            {
+                                lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
+                            }
                         }
-
-                    }
-                    //comboSeatRequired.SelectedIndex == comboStudentRequired.SelectedIndex;
-                    //IF Q3 IS EMPTY
-                    if (comboBrokenSeat.Text == String.Empty)
-                    {
-                        var random1 = new Random();
-                        var result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
-
-                        for (int i = 0; i < result1.Count; i++)
+                        //IF Q3 IS NOT EMPTY
+                        else
                         {
-                            lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
-                        }
-                    }
-                    //IF Q3 IS NOT EMPTY
-                    else
-                    {
-                        var random1 = new Random();
+                            var random1 = new Random();
                             if (comboSeatRequired.Text != String.Empty)
                             {
                                 ExcludeWorkstations.Remove(comboBrokenSeat.Text);
                             }
-                        var result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
-                        for (int i = 0; i < result1.Count; i++)
-                        {
-                            lstSeatArrangement.Items.Add($"{result1[i]} - {ExcludeWorkstations[i]}");
-                        }
-                    }
-                    lstSeatArrangement.Items.Add($"{comboStudentRequired.Text} - {comboSeatRequired.Text}");
-                }
-                //IF ONLY HALF OF Q2 IS FILLED
-                else
-                {
-                    lstSeatArrangement.Items.Add("Both of the combo boxes for the student name and required workstation must be blank or filled.");
-                }
-            }
-            //IF Q1 IS FILLED
-            else if (comboStudentSit1.Text != String.Empty && comboStudentSit2.Text != String.Empty)
-            {
-                //IF Q2 IS EMPTY
-                if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
-                {
-                    //IF Q3 IS EMPTY
-                    if (comboBrokenSeat.Text == String.Empty)
-                    {
-                        var random1 = new Random();
-                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
-                        {
-                            result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        }
-                        for (int i = 0; i < result1.Count; i++)
-                        {
-                            lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
-                        }
-                    }
-
-                    //IF Q3 IS FILLED
-                    else
-                    {
-                        List<string> ExcludeStudentNames = new List<string>();
-                        foreach (var student in StudentNames)
-                        {
-                            if (student != comboStudentRequired.Text)
+                            var result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
+                            for (int i = 0; i < result1.Count; i++)
                             {
-                                ExcludeStudentNames.Add(student);
+                                lstSeatArrangement.Items.Add($"{result1[i]} - {ExcludeWorkstations[i]}");
                             }
-
-                        }
-                        List<string> ExcludeWorkstations = new List<string>();
-                        foreach (var station in Workstations)
-                        {
-                            if (station != comboSeatRequired.Text)
-                            {
-                                ExcludeWorkstations.Add(station);
-                            }
-                        }
-                        if (comboSeatRequired.Text != String.Empty)
-                        {
-                            ExcludeWorkstations.Remove(comboBrokenSeat.Text);
-                        }
-                        var random1 = new Random();
-                        var result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
-                        if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
-                        {
-                            result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        }
-
-                        for (int i = 0; i < result1.Count; i++)
-                        {
-                            lstSeatArrangement.Items.Add($"{result1[i]} - {ExcludeWorkstations[i]}");
-                        }
-                    }
-                }
-                //IF Q2 IS FILLED 
-                else if (comboStudentRequired.Text != String.Empty && comboSeatRequired.Text != String.Empty)
-                {
-                    //FOR IF Q3 IS EMPTY
-                    if (comboBrokenSeat.Text == String.Empty)
-                    {
-                        List<string> ExcludeStudentNames = new List<string>();
-                        foreach (var student in StudentNames)
-                        {
-                            if (student != comboStudentRequired.Text)
-                            {
-                                ExcludeStudentNames.Add(student);
-                            }
-
-                        }
-                        List<string> ExcludeWorkstations = new List<string>();
-                        foreach (var station in Workstations)
-                        {
-                            if (station != comboSeatRequired.Text)
-                            {
-                                ExcludeWorkstations.Add(station);
-                            }
-                        }
-                        var random1 = new Random();
-                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
-                        {
-                            result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
-                        }
-                        for (int i = 0; i < result1.Count; i++)
-                        {
-                            lstSeatArrangement.Items.Add($"{result1[i]} - {ExcludeWorkstations[i]}");
                         }
                         lstSeatArrangement.Items.Add($"{comboStudentRequired.Text} - {comboSeatRequired.Text}");
                     }
-                    //IF Q3 IS FILLED
+                    //IF ONLY HALF OF Q2 IS FILLED
                     else
                     {
-                        List<string> ExcludeStudentNames = new List<string>();
-                        foreach (var student in StudentNames)
-                        {
-                            if (student != comboStudentRequired.Text)
-                            {
-                                ExcludeStudentNames.Add(student);
-                            }
-
-                        }
-                        List<string> ExcludeWorkstations = new List<string>();
-                        foreach (var station in Workstations)
-                        {
-                            if (station != comboSeatRequired.Text)
-                            {
-                                ExcludeWorkstations.Add(station);
-                            }
-                        }
-
-                        var random1 = new Random();
-                        var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
-                        if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
-                        {
-                            result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
-                        }
-                        for (int i = 0; i < result1.Count; i++)
-                        {
-                            lstSeatArrangement.Items.Add(result1[i] + ExcludeWorkstations[i]);
-                        }
-                        lstSeatArrangement.Items.Add($"{comboStudentRequired.Text} - {comboSeatRequired.Text}");
+                        lstSeatArrangement.Items.Add("Both of the combo boxes for the student name and required workstation must be blank or filled.");
                     }
                 }
-                //IF HALF OF Q1 IS FILLED
-                else
+                //IF Q1 IS FILLED
+                else if (comboStudentSit1.Text != String.Empty && comboStudentSit2.Text != String.Empty)
                 {
-                    lstSeatArrangement.Items.Add("Both of the combo boxes for the student names that cannot sit next to each other should be blank or filled");
+                    //IF Q2 IS EMPTY
+                    if (comboStudentRequired.Text == String.Empty && comboSeatRequired.Text == String.Empty)
+                    {
+                        //IF Q3 IS EMPTY
+                        if (comboBrokenSeat.Text == String.Empty)
+                        {
+                            var random1 = new Random();
+                            var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
+                            {
+                                result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            }
+                            for (int i = 0; i < result1.Count; i++)
+                            {
+                                lstSeatArrangement.Items.Add($"{result1[i]} - {Workstations[i]}");
+                            }
+                        }
+
+                        //IF Q3 IS FILLED
+                        else
+                        {
+                            List<string> ExcludeStudentNames = new List<string>();
+                            foreach (var student in StudentNames)
+                            {
+                                if (student != comboStudentRequired.Text)
+                                {
+                                    ExcludeStudentNames.Add(student);
+                                }
+
+                            }
+                            List<string> ExcludeWorkstations = new List<string>();
+                            foreach (var station in Workstations)
+                            {
+                                if (station != comboSeatRequired.Text)
+                                {
+                                    ExcludeWorkstations.Add(station);
+                                }
+                            }
+                            if (comboSeatRequired.Text != String.Empty)
+                            {
+                                ExcludeWorkstations.Remove(comboBrokenSeat.Text);
+                            }
+                            var random1 = new Random();
+                            var result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
+                            if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
+                            {
+                                result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            }
+
+                            for (int i = 0; i < result1.Count; i++)
+                            {
+                                lstSeatArrangement.Items.Add($"{result1[i]} - {ExcludeWorkstations[i]}");
+                            }
+                        }
+                    }
+                    //IF Q2 IS FILLED 
+                    else if (comboStudentRequired.Text != String.Empty && comboSeatRequired.Text != String.Empty)
+                    {
+                        //FOR IF Q3 IS EMPTY
+                        if (comboBrokenSeat.Text == String.Empty)
+                        {
+                            List<string> ExcludeStudentNames = new List<string>();
+                            foreach (var student in StudentNames)
+                            {
+                                if (student != comboStudentRequired.Text)
+                                {
+                                    ExcludeStudentNames.Add(student);
+                                }
+
+                            }
+                            List<string> ExcludeWorkstations = new List<string>();
+                            foreach (var station in Workstations)
+                            {
+                                if (station != comboSeatRequired.Text)
+                                {
+                                    ExcludeWorkstations.Add(station);
+                                }
+                            }
+                            var random1 = new Random();
+                            var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
+                            {
+                                result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
+                            }
+                            for (int i = 0; i < result1.Count; i++)
+                            {
+                                lstSeatArrangement.Items.Add($"{result1[i]} - {ExcludeWorkstations[i]}");
+                            }
+                            lstSeatArrangement.Items.Add($"{comboStudentRequired.Text} - {comboSeatRequired.Text}");
+                        }
+                        //IF Q3 IS FILLED
+                        else
+                        {
+                            List<string> ExcludeStudentNames = new List<string>();
+                            foreach (var student in StudentNames)
+                            {
+                                if (student != comboStudentRequired.Text)
+                                {
+                                    ExcludeStudentNames.Add(student);
+                                }
+
+                            }
+                            List<string> ExcludeWorkstations = new List<string>();
+                            foreach (var station in Workstations)
+                            {
+                                if (station != comboSeatRequired.Text)
+                                {
+                                    ExcludeWorkstations.Add(station);
+                                }
+                            }
+
+                            var random1 = new Random();
+                            var result1 = StudentNames.OrderBy(item => random1.Next()).ToList();
+                            if (comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex + 1) || comboStudentSit1.SelectedIndex == (comboStudentSit2.SelectedIndex - 1))
+                            {
+                                result1 = ExcludeStudentNames.OrderBy(item => random1.Next()).ToList();
+                            }
+                            for (int i = 0; i < result1.Count; i++)
+                            {
+                                lstSeatArrangement.Items.Add(result1[i] + ExcludeWorkstations[i]);
+                            }
+                            lstSeatArrangement.Items.Add($"{comboStudentRequired.Text} - {comboSeatRequired.Text}");
+                        }
+                    }
+                    //IF HALF OF Q1 IS FILLED
+                    else
+                    {
+                        lstSeatArrangement.Items.Add("Both of the combo boxes for the student names that cannot sit next to each other should be blank or filled");
+                    }
                 }
             }
         }
     }
-}
+
